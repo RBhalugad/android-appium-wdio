@@ -77,13 +77,12 @@ const commonCapabilities: Record<string, any> = {
     },
 };
 
-// Merge commonCapabilities into each capability
 config.capabilities?.forEach((caps) => {
     const cap = caps as Record<string, any>;
     for (const key in commonCapabilities) {
         cap[key] = {
             ...(commonCapabilities[key] || {}),
-            ...(cap[key] || {}),
+            ...((cap[key] || {})),
         };
     }
 });
