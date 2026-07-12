@@ -1,14 +1,28 @@
 import { Page } from './page.js';
 
 class MenuPage extends Page {
-    get sideMenuPanel() { return $('~tab-side-menu-panel'); }
-    
-    get menuHomeItem() { return $('~side-menu-item-home'); }
-    get menuWebviewItem() { return $('~side-menu-item-webview'); }
-    get menuLoginItem() { return $('~side-menu-item-login'); }
-    get menuFormsItem() { return $('~side-menu-item-forms'); }
-    get menuSwipeItem() { return $('~side-menu-item-swipe'); }
-    get menuDragItem() { return $('~side-menu-item-drag'); }
+    get sideMenuPanel() {
+        return $('~tab-side-menu-panel');
+    }
+
+    get menuHomeItem() {
+        return $('~side-menu-item-home');
+    }
+    get menuWebviewItem() {
+        return $('~side-menu-item-webview');
+    }
+    get menuLoginItem() {
+        return $('~side-menu-item-login');
+    }
+    get menuFormsItem() {
+        return $('~side-menu-item-forms');
+    }
+    get menuSwipeItem() {
+        return $('~side-menu-item-swipe');
+    }
+    get menuDragItem() {
+        return $('~side-menu-item-drag');
+    }
 
     get menuItems() {
         return [

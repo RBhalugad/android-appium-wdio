@@ -1,11 +1,21 @@
 import { Page } from './page.js';
 
 class SwipePage extends Page {
-    get swipeScreen() { return $('~Swipe-screen'); }
-    get carousel() { return $('//*[@resource-id="Carousel"]'); }
-    get cards() { return $$('~card'); }
-    get logo() { return $('~WebdriverIO logo'); }
-    get logoText() { return $('//*[@text="You found me!!!"]'); }
+    get swipeScreen() {
+        return $('~Swipe-screen');
+    }
+    get carousel() {
+        return $('//*[@resource-id="Carousel"]');
+    }
+    get cards() {
+        return $$('~card');
+    }
+    get logo() {
+        return $('~WebdriverIO logo');
+    }
+    get logoText() {
+        return $('//*[@text="You found me!!!"]');
+    }
     async navigateToSwipe(): Promise<void> {
         await super.navigateTo('Swipe');
         await expect(this.swipeScreen).toBeDisplayed();

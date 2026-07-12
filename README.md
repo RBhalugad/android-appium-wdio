@@ -3,6 +3,7 @@
 A complete working project for testing an Android app on a **real device** or **emulator** with [WebdriverIO](https://webdriver.io) v9, [Appium](https://appium.io) 3, and the **Page Object Model (POM)** pattern.
 
 This test framework is currently built against the [WebdriverIO Native Demo App](https://github.com/webdriverio/native-demo-app) and covers various mobile automation scenarios including:
+
 - **Authentication**: Sign up & Login flows
 - **Gestures**: Drag and Drop (Puzzle), Swipe (Carousel)
 - **Forms**: Input fields, Switches, Dropdowns
@@ -32,6 +33,7 @@ npm install
 ```
 
 Then:
+
 1. Download the demo app APK from https://github.com/webdriverio/native-demo-app/releases/latest and put it in `./apps`. (Named `android_native.apk`)
 2. Make sure your Android emulator is running or real device is plugged in.
 
