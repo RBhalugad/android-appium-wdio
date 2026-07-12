@@ -11,6 +11,11 @@ export const Locators = {
     WebviewScreen: '//android.webkit.WebView',
     LoginScreen: '~Login-screen',
     FormsScreen: '~Forms-screen',
+    SwipeScreen: '~Swipe-screen',
+    DragScreen: '~Drag-drop-screen',
+
+    Carousel: '//*[@resource-id="Carousel"]',
+    Card: '~card',
 
     SideMenuPanel: '~tab-side-menu-panel',
     MenuItems: [
