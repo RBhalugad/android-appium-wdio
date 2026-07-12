@@ -78,11 +78,12 @@ const commonCapabilities: Record<string, any> = {
 };
 
 // Merge commonCapabilities into each capability
-config.capabilities?.forEach((caps: WebdriverIO.Capabilities) => {
+config.capabilities?.forEach((caps) => {
+    const cap = caps as Record<string, any>;
     for (const key in commonCapabilities) {
-        (caps as any)[key] = {
+        cap[key] = {
             ...(commonCapabilities[key] || {}),
-            ...((caps as any)[key] || {}),
+            ...(cap[key] || {}),
         };
     }
 });
