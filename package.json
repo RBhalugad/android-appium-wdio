@@ -1,0 +1,31 @@
+{
+    "name": "android-appium-wdio",
+    "version": "1.0.0",
+    "private": true,
+    "description": "WebdriverIO + Appium starter for testing an Android app on a real device (TypeScript)",
+    "type": "module",
+    "engines": {
+        "node": ">=20.19.0"
+    },
+    "scripts": {
+        "test": "wdio run ./wdio.conf.ts",
+        "postinstall": "node scripts/patch-webdriver.js",
+        "format": "prettier --write .",
+        "format:check": "prettier --check ."
+    },
+    "devDependencies": {
+        "@types/node": "^24.13.3",
+        "@wdio/appium-service": "^9.29.1",
+        "@wdio/cli": "^9.29.1",
+        "@wdio/globals": "^9.29.1",
+        "@wdio/local-runner": "^9.29.1",
+        "@wdio/mocha-framework": "^9.29.1",
+        "@wdio/spec-reporter": "^9.29.1",
+        "prettier": "^3.9.5",
+        "tsx": "^4.23.0",
+        "typescript": "^7.0.2"
+    },
+    "overrides": {
+        "serialize-javascript": "^7.0.7"
+    }
+}

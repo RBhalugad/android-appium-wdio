@@ -1,0 +1,39 @@
+# Dependencies
+node_modules/
+
+# Build artifacts
+*.tsbuildinfo
+dist/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Appium / Apps
+apps/*.apk
+apps/*.aab
+apps/*.ipa
+
+# WDIO / Test output
+allure-results/
+allure-report/
+screenshots/
+errorShots/
+
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Environment
+.env
+.env.*
+!.env.example
