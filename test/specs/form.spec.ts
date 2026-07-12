@@ -1,56 +1,83 @@
-import { Locators } from '../locators.js';
+import FormsPage from '../pageobjects/forms.page.js';
 
 describe('Form tests', () => {
     beforeEach(async () => {
-        await driver.terminateApp('com.wdiodemoapp');
         await driver.activateApp('com.wdiodemoapp');
-        const formsTab = await $(Locators.FormsTab);
-        await formsTab.waitForDisplayed();
-        await formsTab.click();
-        const formsScreen = await $(Locators.FormsScreen);
-        await formsScreen.waitForDisplayed({ timeout: 10000 });
+        await driver.pause(2000);
+    });
+
+    afterEach(async () => {
+        await driver.terminateApp('com.wdiodemoapp');
     });
 
     it('Verify typing into an input field', async () => {
-        const inputField = await $(Locators.FormInput);
-        await inputField.waitForDisplayed({ timeout: 10000 });
-        await inputField.setValue('Hello Appium!');
+        const formsTab = await FormsPage.tabForms;
+        await formsTab.waitForDisplayed({ timeout: 10000 });
+        await formsTab.click();
 
-        const inputResult = await $(Locators.FormInputResult);
-        await expect(inputResult).toHaveText('Hello Appium!');
+        const formsScreen = await FormsPage.formsScreen;
+        await formsScreen.waitForDisplayed({ timeout: 10000 });
+        await expect(formsScreen).toBeDisplayed();
+
+        const input = await FormsPage.input;
+        await input.waitForDisplayed({ timeout: 10000 });
+        await input.setValue('WebDriverIO Forms Test');
+
+        const inputResult = await FormsPage.inputResult;
+        await expect(inputResult).toHaveText('WebDriverIO Forms Test');
     });
 
     it('Verify toggle button', async () => {
-        const switchBtn = await $(Locators.FormSwitch);
-        await switchBtn.waitForDisplayed({ timeout: 10000 });
+        const formsTab = await FormsPage.tabForms;
+        await formsTab.waitForDisplayed({ timeout: 10000 });
+        await formsTab.click();
 
-        const switchText = await $(Locators.FormSwitchText);
+        const formsScreen = await FormsPage.formsScreen;
+        await formsScreen.waitForDisplayed({ timeout: 10000 });
+        await expect(formsScreen).toBeDisplayed();
+
+        const switchText = await FormsPage.switchText;
         await expect(switchText).toHaveText('Click to turn the switch ON');
 
-        await switchBtn.click();
+        const toggle = await FormsPage.switch;
+        await toggle.click();
 
         await expect(switchText).toHaveText('Click to turn the switch OFF');
     });
 
     it('verify active and inactive buttons', async () => {
-        const activeBtn = await $(Locators.FormActiveButton);
-        await activeBtn.waitForDisplayed({ timeout: 10000 });
+        const formsTab = await FormsPage.tabForms;
+        await formsTab.waitForDisplayed({ timeout: 10000 });
+        await formsTab.click();
+
+        const formsScreen = await FormsPage.formsScreen;
+        await formsScreen.waitForDisplayed({ timeout: 10000 });
+        await expect(formsScreen).toBeDisplayed();
+
+        const activeBtn = await FormsPage.btnActive;
         await activeBtn.click();
 
-        const okBtn = await $(Locators.OkButton);
+        const okBtn = await FormsPage.btnOk;
         await okBtn.waitForDisplayed({ timeout: 10000 });
         await okBtn.click();
 
-        const inactiveBtn = await $(Locators.FormInactiveButton);
-        await expect(inactiveBtn).toExist();
+        const inactiveBtn = await FormsPage.btnInactive;
+        await expect(inactiveBtn).toBeDisplayed();
     });
 
     it('verify dropdown', async () => {
-        const dropdown = await $(Locators.FormDropdown);
-        await dropdown.waitForDisplayed({ timeout: 10000 });
+        const formsTab = await FormsPage.tabForms;
+        await formsTab.waitForDisplayed({ timeout: 10000 });
+        await formsTab.click();
+
+        const formsScreen = await FormsPage.formsScreen;
+        await formsScreen.waitForDisplayed({ timeout: 10000 });
+        await expect(formsScreen).toBeDisplayed();
+
+        const dropdown = await FormsPage.dropdown;
         await dropdown.click();
 
-        const option = await $('//*[@text="webdriver.io is awesome"]');
+        const option = await $("//*[@text='webdriver.io is awesome']");
         await option.waitForDisplayed({ timeout: 10000 });
         await option.click();
     });

@@ -1,4 +1,5 @@
-import { Locators } from '../locators.js';
+import HomePage from '../pageobjects/home.page.js';
+import LoginPage from '../pageobjects/login.page.js';
 
 describe('WebdriverIO + Appium smoke test', () => {
     const appPackage = 'com.wdiodemoapp';
@@ -12,15 +13,15 @@ describe('WebdriverIO + Appium smoke test', () => {
     });
 
     it('launches the app and shows the Home tab', async () => {
-        const homeTab = await $(Locators.HomeTab);
+        const homeTab = await HomePage.tabHome;
         await homeTab.waitForDisplayed({ timeout: 20000 });
         await expect(homeTab).toBeDisplayed();
     });
 
     it('navigates to the Login screen', async () => {
-        await $(Locators.LoginTab).click();
+        await HomePage.tabLogin.click();
 
-        const loginScreen = await $(Locators.LoginScreen);
+        const loginScreen = await LoginPage.loginScreen;
         await loginScreen.waitForDisplayed({ timeout: 10000 });
         await expect(loginScreen).toBeDisplayed();
     });

@@ -1,4 +1,4 @@
-import { Locators } from '../locators.js';
+import SwipePage from '../pageobjects/swipe.page.js';
 
 describe('Swipe gestures tests', () => {
     beforeEach(async () => {
@@ -11,18 +11,18 @@ describe('Swipe gestures tests', () => {
     });
 
     it('Verify swiping one by one and card to be displayed', async () => {
-        const swipeTab = await $(Locators.SwipeTab);
+        const swipeTab = await SwipePage.tabSwipe;
         await swipeTab.waitForDisplayed({ timeout: 10000 });
         await swipeTab.click();
 
-        const swipeScreen = await $(Locators.SwipeScreen);
+        const swipeScreen = await SwipePage.swipeScreen;
         await swipeScreen.waitForDisplayed({ timeout: 10000 });
         await expect(swipeScreen).toBeDisplayed();
 
-        const carousel = await $(Locators.Carousel);
+        const carousel = await SwipePage.carousel;
         await carousel.waitForDisplayed({ timeout: 10000 });
 
-        const cards = await $$(Locators.Card);
+        const cards = await SwipePage.cards;
         await expect(cards[0]).toBeDisplayed();
 
         for (let i = 0; i < 5; i++) {
@@ -32,8 +32,8 @@ describe('Swipe gestures tests', () => {
                 percent: 0.75,
             });
             await driver.pause(1000);
-            const currentCard = await $$(Locators.Card)[0];
-            await expect(currentCard).toBeDisplayed();
+            const currentCard = await SwipePage.cards;
+            await expect(currentCard[0]).toBeDisplayed();
         }
     });
 });

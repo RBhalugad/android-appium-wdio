@@ -1,4 +1,4 @@
-import { Locators } from '../locators.js';
+import DragPage from '../pageobjects/drag.page.js';
 
 describe('Drag gestures tests', () => {
     beforeEach(async () => {
@@ -11,19 +11,19 @@ describe('Drag gestures tests', () => {
     });
 
     it('Verify drag and drop puzzle completion', async () => {
-        const dragTab = await $(Locators.DragTab);
+        const dragTab = await DragPage.tabDrag;
         await dragTab.waitForDisplayed({ timeout: 10000 });
         await dragTab.click();
 
-        const dragScreen = await $(Locators.DragScreen);
+        const dragScreen = await DragPage.dragScreen;
         await dragScreen.waitForDisplayed({ timeout: 10000 });
         await expect(dragScreen).toBeDisplayed();
 
         const positions = ['l1', 'c1', 'r1', 'l2', 'c2', 'r2', 'l3', 'c3', 'r3'];
 
         for (const pos of positions) {
-            const dragElement = await $(`~drag-${pos}`);
-            const dropZone = await $(`~drop-${pos}`);
+            const dragElement = await DragPage.dragElement(pos);
+            const dropZone = await DragPage.dropZone(pos);
 
             await dragElement.waitForDisplayed({ timeout: 10000 });
             await dropZone.waitForDisplayed({ timeout: 10000 });
@@ -39,8 +39,7 @@ describe('Drag gestures tests', () => {
             await driver.pause(500);
         }
 
-        // Verify the puzzle completion by checking for the congratulations message
-        const congratulationsText = await $("//*[@text='Congratulations']");
+        const congratulationsText = await DragPage.congratulationsText;
         await congratulationsText.waitForDisplayed({ timeout: 10000 });
         await expect(congratulationsText).toBeDisplayed();
     });

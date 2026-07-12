@@ -1,48 +1,53 @@
-import { Locators } from '../locators.js';
+import LoginPage from '../pageobjects/login.page.js';
 
-describe('User  SignUp & Login', () => {
+describe('User SignUp & Login', () => {
     beforeEach(async () => {
         await driver.activateApp('com.wdiodemoapp');
-        await driver.pause(2000);
+        await driver.pause(2000); 
     });
 
     afterEach(async () => {
         await driver.terminateApp('com.wdiodemoapp');
     });
 
-    after(async () => {});
+    it('sign up a user', async () => {
+        const loginTab = await LoginPage.tabLogin;
+        await loginTab.waitForDisplayed({ timeout: 10000 });
+        await loginTab.click();
 
-    it('sign up a user ', async () => {
-        await $(Locators.LoginTab).click();
-        await $(Locators.LoginScreen).waitForDisplayed({ timeout: 10000 });
+        const loginScreen = await LoginPage.loginScreen;
+        await loginScreen.waitForDisplayed({ timeout: 10000 });
+        await expect(loginScreen).toBeDisplayed();
 
-        await $(Locators.SignUpTab).click();
+        const signupTab = await LoginPage.signUpTab;
+        await signupTab.click();
 
-        await $(Locators.EmailInput).setValue('test@example.com');
-        await $(Locators.PasswordInput).setValue('Password123!');
+        await LoginPage.inputEmail.setValue('testuser@gmail.com');
+        await LoginPage.inputPassword.setValue('Password123');
+        await LoginPage.inputRepeatPassword.setValue('Password123');
 
-        const repeatPasswordInput = $(Locators.RepeatPasswordInput);
-        await repeatPasswordInput.setValue('Password123!');
+        await LoginPage.btnSignUp.click();
 
-        await $(Locators.SignUpButton).waitForDisplayed({ timeout: 10000 });
-        await $(Locators.SignUpButton).click();
-
-        await $(Locators.OkButton).waitForDisplayed({ timeout: 10000 });
-        await $(Locators.OkButton).click();
+        const okBtn = await LoginPage.btnOk;
+        await okBtn.waitForDisplayed({ timeout: 10000 });
+        await expect(okBtn).toBeDisplayed();
+        await okBtn.click();
     });
 
     it('Login with valid credentials', async () => {
-        await $(Locators.LoginTab).click();
-        await $(Locators.LoginScreen).waitForDisplayed({ timeout: 10000 });
+        const loginTab = await LoginPage.tabLogin;
+        await loginTab.waitForDisplayed({ timeout: 10000 });
+        await loginTab.click();
 
-        await $(Locators.EmailInput).setValue('test@example.com');
-        await $(Locators.PasswordInput).setValue('Password123!');
+        const loginScreen = await LoginPage.loginScreen;
+        await loginScreen.waitForDisplayed({ timeout: 10000 });
+        await expect(loginScreen).toBeDisplayed();
 
-        await $(Locators.LoginButton).waitForDisplayed({ timeout: 10000 });
-        await $(Locators.LoginButton).click();
+        await LoginPage.login('testuser@gmail.com', 'Password123');
 
-        const alertOkBtn = $(Locators.OkButton);
-        await alertOkBtn.waitForDisplayed({ timeout: 10000 });
-        await alertOkBtn.click();
+        const okBtn = await LoginPage.btnOk;
+        await okBtn.waitForDisplayed({ timeout: 10000 });
+        await expect(okBtn).toBeDisplayed();
+        await okBtn.click();
     });
 });
