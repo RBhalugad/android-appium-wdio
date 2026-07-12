@@ -2,14 +2,12 @@ import HomePage from '../pageobjects/home.page.js';
 import LoginPage from '../pageobjects/login.page.js';
 
 describe('WebdriverIO + Appium smoke test', () => {
-    const appPackage = 'com.wdiodemoapp';
-
     beforeEach(async () => {
-        await driver.activateApp(appPackage);
+        await HomePage.openApp();
     });
 
     afterEach(async () => {
-        await driver.terminateApp(appPackage);
+        await HomePage.close();
     });
 
     it('launches the app and shows the Home tab', async () => {
@@ -19,10 +17,6 @@ describe('WebdriverIO + Appium smoke test', () => {
     });
 
     it('navigates to the Login screen', async () => {
-        await HomePage.tabLogin.click();
-
-        const loginScreen = await LoginPage.loginScreen;
-        await loginScreen.waitForDisplayed({ timeout: 10000 });
-        await expect(loginScreen).toBeDisplayed();
+        await LoginPage.navigateToLogin();
     });
 });

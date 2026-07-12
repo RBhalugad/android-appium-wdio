@@ -11,6 +11,11 @@ class DragPage extends Page {
     async dropZone(pos: string) {
         return $(`~drop-${pos}`);
     }
+
+    async navigateToDrag(): Promise<void> {
+        await super.navigateTo('Drag');
+        await expect(this.dragScreen).toBeDisplayed();
+    }
 }
 
 export default new DragPage();

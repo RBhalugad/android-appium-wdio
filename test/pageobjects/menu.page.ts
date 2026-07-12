@@ -34,6 +34,41 @@ class MenuPage extends Page {
             'side-menu-star-data-management',
         ];
     }
+
+    async navigateToMenu(): Promise<void> {
+        await super.navigateTo('Menu');
+        await expect(this.sideMenuPanel).toBeDisplayed();
+    }
+
+    async openHome(): Promise<void> {
+        await expect(this.menuHomeItem).toExist();
+        await this.menuHomeItem.click();
+    }
+
+    async openWebview(): Promise<void> {
+        await expect(this.menuWebviewItem).toExist();
+        await this.menuWebviewItem.click();
+    }
+
+    async openLogin(): Promise<void> {
+        await expect(this.menuLoginItem).toExist();
+        await this.menuLoginItem.click();
+    }
+
+    async openForms(): Promise<void> {
+        await expect(this.menuFormsItem).toExist();
+        await this.menuFormsItem.click();
+    }
+
+    async openSwipe(): Promise<void> {
+        await expect(this.menuSwipeItem).toExist();
+        await this.menuSwipeItem.click();
+    }
+
+    async openDrag(): Promise<void> {
+        await expect(this.menuDragItem).toExist();
+        await this.menuDragItem.click();
+    }
 }
 
 export default new MenuPage();

@@ -2,38 +2,19 @@ import SwipePage from '../pageobjects/swipe.page.js';
 
 describe('Swipe gestures tests', () => {
     beforeEach(async () => {
-        await driver.activateApp('com.wdiodemoapp');
-        await driver.pause(2000);
+        await SwipePage.openApp();
+        await SwipePage.navigateToSwipe();
     });
 
     afterEach(async () => {
-        await driver.terminateApp('com.wdiodemoapp');
+        await SwipePage.close();
     });
 
     it('Verify swiping one by one and card to be displayed', async () => {
-        const swipeTab = await SwipePage.tabSwipe;
-        await swipeTab.waitForDisplayed({ timeout: 10000 });
-        await swipeTab.click();
+        await SwipePage.swipeCarouselLeft(5);
+    });
 
-        const swipeScreen = await SwipePage.swipeScreen;
-        await swipeScreen.waitForDisplayed({ timeout: 10000 });
-        await expect(swipeScreen).toBeDisplayed();
-
-        const carousel = await SwipePage.carousel;
-        await carousel.waitForDisplayed({ timeout: 10000 });
-
-        const cards = await SwipePage.cards;
-        await expect(cards[0]).toBeDisplayed();
-
-        for (let i = 0; i < 5; i++) {
-            await driver.execute('mobile: swipeGesture', {
-                elementId: carousel.elementId,
-                direction: 'left',
-                percent: 0.75,
-            });
-            await driver.pause(1000);
-            const currentCard = await SwipePage.cards;
-            await expect(currentCard[0]).toBeDisplayed();
-        }
+    it('Verify swiping vertically to find the logo', async () => {
+        await SwipePage.scrollDownToLogo();
     });
 });

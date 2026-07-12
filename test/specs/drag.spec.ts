@@ -2,23 +2,15 @@ import DragPage from '../pageobjects/drag.page.js';
 
 describe('Drag gestures tests', () => {
     beforeEach(async () => {
-        await driver.activateApp('com.wdiodemoapp');
-        await driver.pause(2000);
+        await DragPage.openApp();
+        await DragPage.navigateToDrag();
     });
 
     afterEach(async () => {
-        await driver.terminateApp('com.wdiodemoapp');
+        await DragPage.close();
     });
 
     it('Verify drag and drop puzzle completion', async () => {
-        const dragTab = await DragPage.tabDrag;
-        await dragTab.waitForDisplayed({ timeout: 10000 });
-        await dragTab.click();
-
-        const dragScreen = await DragPage.dragScreen;
-        await dragScreen.waitForDisplayed({ timeout: 10000 });
-        await expect(dragScreen).toBeDisplayed();
-
         const positions = ['l1', 'c1', 'r1', 'l2', 'c2', 'r2', 'l3', 'c3', 'r3'];
 
         for (const pos of positions) {

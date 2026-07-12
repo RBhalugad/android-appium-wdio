@@ -8,23 +8,15 @@ import DragPage from '../pageobjects/drag.page.js';
 
 describe('Menu UI tests', () => {
     beforeEach(async () => {
-        await driver.activateApp('com.wdiodemoapp');
-        await driver.pause(2000);
+        await MenuPage.openApp();
+        await MenuPage.navigateToMenu();
     });
 
     afterEach(async () => {
-        await driver.terminateApp('com.wdiodemoapp');
+        await MenuPage.close();
     });
 
     it('Opens menu and verify menu', async () => {
-        const menuTab = await MenuPage.tabMenu;
-        await menuTab.waitForDisplayed({ timeout: 10000 });
-        await menuTab.click();
-
-        const sideMenuPanel = await MenuPage.sideMenuPanel;
-        await sideMenuPanel.waitForDisplayed({ timeout: 10000 });
-        await expect(sideMenuPanel).toBeDisplayed();
-
         for (const item of MenuPage.menuItems) {
             const el = $(`~${item}`);
             await expect(el).toExist();
@@ -37,110 +29,38 @@ describe('Menu UI tests', () => {
     });
 
     it('Navigates to the Home screen from menu', async () => {
-        const menuTab = await MenuPage.tabMenu;
-        await menuTab.waitForDisplayed({ timeout: 10000 });
-        await menuTab.click();
-
-        const sideMenuPanel = await MenuPage.sideMenuPanel;
-        await sideMenuPanel.waitForDisplayed({ timeout: 10000 });
-        await expect(sideMenuPanel).toBeDisplayed();
-
-        const homeItem = await MenuPage.menuHomeItem;
-        await expect(homeItem).toExist();
-        await homeItem.click();
-
-        const homeScreen = await HomePage.homeScreen;
-        await homeScreen.waitForDisplayed({ timeout: 10000 });
-        await expect(homeScreen).toBeDisplayed();
+        await MenuPage.openHome();
+        await HomePage.homeScreen.waitForDisplayed({ timeout: 10000 });
+        await expect(HomePage.homeScreen).toBeDisplayed();
     });
 
     it('Navigates to the Webview screen from menu', async () => {
-        const menuTab = await MenuPage.tabMenu;
-        await menuTab.waitForDisplayed({ timeout: 10000 });
-        await menuTab.click();
-
-        const sideMenuPanel = await MenuPage.sideMenuPanel;
-        await sideMenuPanel.waitForDisplayed({ timeout: 10000 });
-        await expect(sideMenuPanel).toBeDisplayed();
-
-        const webviewItem = await MenuPage.menuWebviewItem;
-        await expect(webviewItem).toExist();
-        await webviewItem.click();
-
-        const webviewScreen = await WebviewPage.webviewScreen;
-        await webviewScreen.waitForDisplayed({ timeout: 10000 });
-        await expect(webviewScreen).toBeDisplayed();
+        await MenuPage.openWebview();
+        await WebviewPage.webviewScreen.waitForDisplayed({ timeout: 10000 });
+        await expect(WebviewPage.webviewScreen).toBeDisplayed();
     });
 
     it('Navigates to the Login screen from menu', async () => {
-        const menuTab = await MenuPage.tabMenu;
-        await menuTab.waitForDisplayed({ timeout: 10000 });
-        await menuTab.click();
-
-        const sideMenuPanel = await MenuPage.sideMenuPanel;
-        await sideMenuPanel.waitForDisplayed({ timeout: 10000 });
-        await expect(sideMenuPanel).toBeDisplayed();
-
-        const loginItem = await MenuPage.menuLoginItem;
-        await expect(loginItem).toExist();
-        await loginItem.click();
-
-        const loginScreen = await LoginPage.loginScreen;
-        await loginScreen.waitForDisplayed({ timeout: 10000 });
-        await expect(loginScreen).toBeDisplayed();
+        await MenuPage.openLogin();
+        await LoginPage.loginScreen.waitForDisplayed({ timeout: 10000 });
+        await expect(LoginPage.loginScreen).toBeDisplayed();
     });
 
     it('Navigates to the Forms screen from menu', async () => {
-        const menuTab = await MenuPage.tabMenu;
-        await menuTab.waitForDisplayed({ timeout: 10000 });
-        await menuTab.click();
-
-        const sideMenuPanel = await MenuPage.sideMenuPanel;
-        await sideMenuPanel.waitForDisplayed({ timeout: 10000 });
-        await expect(sideMenuPanel).toBeDisplayed();
-
-        const formsItem = await MenuPage.menuFormsItem;
-        await expect(formsItem).toExist();
-        await formsItem.click();
-
-        const formsScreen = await FormsPage.formsScreen;
-        await formsScreen.waitForDisplayed({ timeout: 10000 });
-        await expect(formsScreen).toBeDisplayed();
+        await MenuPage.openForms();
+        await FormsPage.formsScreen.waitForDisplayed({ timeout: 10000 });
+        await expect(FormsPage.formsScreen).toBeDisplayed();
     });
 
     it('Navigates to the Swipe screen from menu', async () => {
-        const menuTab = await MenuPage.tabMenu;
-        await menuTab.waitForDisplayed({ timeout: 10000 });
-        await menuTab.click();
-
-        const sideMenuPanel = await MenuPage.sideMenuPanel;
-        await sideMenuPanel.waitForDisplayed({ timeout: 10000 });
-        await expect(sideMenuPanel).toBeDisplayed();
-
-        const swipeItem = await MenuPage.menuSwipeItem;
-        await expect(swipeItem).toExist();
-        await swipeItem.click();
-
-        const swipeScreen = await SwipePage.swipeScreen;
-        await swipeScreen.waitForDisplayed({ timeout: 10000 });
-        await expect(swipeScreen).toBeDisplayed();
+        await MenuPage.openSwipe();
+        await SwipePage.swipeScreen.waitForDisplayed({ timeout: 10000 });
+        await expect(SwipePage.swipeScreen).toBeDisplayed();
     });
 
     it('Navigates to the Drag screen from menu', async () => {
-        const menuTab = await MenuPage.tabMenu;
-        await menuTab.waitForDisplayed({ timeout: 10000 });
-        await menuTab.click();
-
-        const sideMenuPanel = await MenuPage.sideMenuPanel;
-        await sideMenuPanel.waitForDisplayed({ timeout: 10000 });
-        await expect(sideMenuPanel).toBeDisplayed();
-
-        const dragItem = await MenuPage.menuDragItem;
-        await expect(dragItem).toExist();
-        await dragItem.click();
-
-        const dragScreen = await DragPage.dragScreen;
-        await dragScreen.waitForDisplayed({ timeout: 10000 });
-        await expect(dragScreen).toBeDisplayed();
+        await MenuPage.openDrag();
+        await DragPage.dragScreen.waitForDisplayed({ timeout: 10000 });
+        await expect(DragPage.dragScreen).toBeDisplayed();
     });
 });
