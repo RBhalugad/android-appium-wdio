@@ -9,10 +9,6 @@ describe('WebdriverIO + Appium smoke test', () => {
         await driver.terminateApp(appPackage);
     });
 
-    after(async () => {
-        await driver.deleteSession();
-    });
-
     it('launches the app and shows the Home tab', async () => {
         const homeTab = await $('~Home');
         await homeTab.waitForDisplayed({ timeout: 20000 });

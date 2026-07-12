@@ -32,9 +32,8 @@ export const config: WebdriverIO.Config = {
             'wdio:maxInstances': 1,
             'appium:automationName': 'UiAutomator2',
 
-            // Device serial from `adb devices -l` — ensures Appium always
-            // targets this specific phone (RMP2204 / RE5C6EL1).
-            'appium:udid': 'PVVKHQ8LC6KF7HKN',
+            // Device serial from `adb devices -l`
+            'appium:udid': 'RZCW82S2D9F',
 
             // Resolved automatically from ./apps above
             'appium:app': join(appsDir, apkFile),
@@ -83,6 +82,6 @@ export const config: WebdriverIO.Config = {
     reporters: ['spec'],
     mochaOpts: {
         ui: 'bdd',
-        timeout: 60000,
+        timeout: 120000,
     },
 };
