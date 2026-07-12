@@ -9,7 +9,7 @@
     },
     "scripts": {
         "test": "wdio run ./wdio.conf.ts",
-        "postinstall": "node scripts/patch-webdriver.js",
+        "postinstall": "tsx scripts/patch-webdriver.ts",
         "format": "prettier --write .",
         "format:check": "prettier --check ."
     },

@@ -41,6 +41,7 @@ export const config: WebdriverIO.Config = {
 
             'appium:autoGrantPermissions': true,
             'appium:ignoreHiddenApiPolicyError': true,
+            'appium:noReset': true,
             'appium:newCommandTimeout': 240,
         },
     ],

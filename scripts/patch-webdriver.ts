@@ -1,5 +1,5 @@
 /**
- * patch-webdriver.js
+ * patch-webdriver.ts
  *
  * Patches the `webdriver` package to remove "forbidden" HTTP headers
  * (`Content-Length` and `Connection`) that Node.js ≥ 26 rejects with
@@ -15,16 +15,16 @@ import { readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const __dirname = fileURLToPath(new URL('.', import.meta.url));
-const filesToPatch = [
+const __dirname: string = fileURLToPath(new URL('.', import.meta.url));
+const filesToPatch: string[] = [
     join(__dirname, '..', 'node_modules', 'webdriver', 'build', 'node.js'),
     join(__dirname, '..', 'node_modules', 'webdriver', 'build', 'index.js'),
 ];
 
-let patchedCount = 0;
+let patchedCount: number = 0;
 
 for (const filePath of filesToPatch) {
-    let src;
+    let src: string;
     try {
         src = readFileSync(filePath, 'utf8');
     } catch {
@@ -32,7 +32,7 @@ for (const filePath of filesToPatch) {
         continue;
     }
 
-    let patched = src;
+    let patched: string = src;
 
     // 1. Remove `"Connection": "keep-alive"` from DEFAULT_HEADERS
     patched = patched.replace(
