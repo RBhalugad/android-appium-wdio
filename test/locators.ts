@@ -40,6 +40,10 @@ export const Locators = {
 
     MenuHomeItem: '~side-menu-item-home',
     MenuWebviewItem: '~side-menu-item-webview',
+    MenuLoginItem: '~side-menu-item-login',
+    MenuFormsItem: '~side-menu-item-forms',
+    MenuSwipeItem: '~side-menu-item-swipe',
+    MenuDragItem: '~side-menu-item-drag',
 
     SignUpTab: '//android.widget.TextView[@text="Sign up"]',
     EmailInput: '~input-email',

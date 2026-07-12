@@ -29,7 +29,7 @@ describe('Swipe gestures tests', () => {
             await driver.execute('mobile: swipeGesture', {
                 elementId: carousel.elementId,
                 direction: 'left',
-                percent: 0.75
+                percent: 0.75,
             });
             await driver.pause(1000);
             const currentCard = await $$(Locators.Card)[0];
