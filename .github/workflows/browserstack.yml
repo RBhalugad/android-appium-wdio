@@ -1,0 +1,71 @@
+name: BrowserStack Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  browserstack-test:
+    name: Run Appium Tests on BrowserStack
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Upload APK to BrowserStack
+        id: upload-app
+        run: |
+          RESPONSE=$(curl -s -u "${{ secrets.BROWSERSTACK_USERNAME }}:${{ secrets.BROWSERSTACK_ACCESS_KEY }}" \
+            -X POST "https://api-cloud.browserstack.com/app-automate/upload" \
+            -F "file=@apps/android_native.apk")
+          echo "Upload response: $RESPONSE"
+          APP_URL=$(echo "$RESPONSE" | jq -r '.app_url')
+          if [ "$APP_URL" = "null" ] || [ -z "$APP_URL" ]; then
+            echo "❌ Failed to upload APK to BrowserStack"
+            exit 1
+          fi
+          echo "✅ App uploaded: $APP_URL"
+          echo "app_url=$APP_URL" >> "$GITHUB_OUTPUT"
+
+      - name: Run BrowserStack tests
+        run: npm run test:browserstack
+        env:
+          BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
+          BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+          BROWSERSTACK_APP_URL: ${{ steps.upload-app.outputs.app_url }}
+
+      - name: Generate Allure report
+        if: always()
+        run: npx allure generate allure-results --clean -o allure-report
+
+      - name: Upload Allure report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-report
+          path: allure-report/
+          retention-days: 30
+
+      - name: Upload test logs
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-logs
+          path: |
+            log/
+            logs/
+          retention-days: 14

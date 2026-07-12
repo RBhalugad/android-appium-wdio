@@ -1,6 +1,15 @@
+import { existsSync } from 'node:fs';
+import { resolve } from 'node:path';
+
+// Load .env file if it exists (credentials, app URL, etc.)
+const envPath = resolve(process.cwd(), '.env');
+if (existsSync(envPath)) {
+    process.loadEnvFile(envPath);
+}
+
 export const config: WebdriverIO.Config = {
-    user: process.env.BROWSERSTACK_USERNAME || 'randhirpatel_9YjbkC',
-    key: process.env.BROWSERSTACK_ACCESS_KEY || 'wFK61ZhuvLVA9Ek3rYk6',
+    user: process.env.BROWSERSTACK_USERNAME,
+    key: process.env.BROWSERSTACK_ACCESS_KEY,
     hostname: 'hub.browserstack.com',
 
     services: [
@@ -8,7 +17,7 @@ export const config: WebdriverIO.Config = {
             'browserstack',
             {
                 buildIdentifier: '${BUILD_NUMBER}',
-                app: process.env.BROWSERSTACK_APP_URL || 'bs://f97842ca3a30ce987f17650086c985b4798c4775',
+                app: process.env.BROWSERSTACK_APP_URL,
                 browserstackLocal: false,
             },
         ],
