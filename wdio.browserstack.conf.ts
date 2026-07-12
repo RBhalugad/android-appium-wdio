@@ -1,6 +1,6 @@
 export const config: WebdriverIO.Config = {
-    user: process.env.BROWSERSTACK_USERNAME || 'BROWSERSTACK_USERNAME',
-    key: process.env.BROWSERSTACK_ACCESS_KEY || 'BROWSERSTACK_ACCESS_KEY',
+    user: process.env.BROWSERSTACK_USERNAME || 'randhirpatel_9YjbkC',
+    key: process.env.BROWSERSTACK_ACCESS_KEY || 'wFK61ZhuvLVA9Ek3rYk6',
     hostname: 'hub.browserstack.com',
 
     services: [
@@ -8,7 +8,7 @@ export const config: WebdriverIO.Config = {
             'browserstack',
             {
                 buildIdentifier: '${BUILD_NUMBER}',
-                app: process.env.BROWSERSTACK_APP_URL || 'bs://<app-hash>',
+                app: process.env.BROWSERSTACK_APP_URL || 'bs://f97842ca3a30ce987f17650086c985b4798c4775',
                 browserstackLocal: false,
             },
         ],
