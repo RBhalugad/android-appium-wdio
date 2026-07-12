@@ -37,6 +37,7 @@ export const config: WebdriverIO.Config = {
 
             // Resolved automatically from ./apps above
             'appium:app': join(appsDir, apkFile),
+            'appium:orientation': 'PORTRAIT',
 
             'appium:autoGrantPermissions': true,
             'appium:ignoreHiddenApiPolicyError': true,

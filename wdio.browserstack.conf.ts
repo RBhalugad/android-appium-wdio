@@ -67,6 +67,7 @@ export const config: WebdriverIO.Config = {
 
 // Shared capabilities to merge into every device entry
 const commonCapabilities: Record<string, any> = {
+    'appium:orientation': 'PORTRAIT',
     'bstack:options': {
         projectName: 'Android Appium WDIO',
         buildName: 'browserstack build',
