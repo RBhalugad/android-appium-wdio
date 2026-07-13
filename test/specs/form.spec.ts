@@ -1,4 +1,4 @@
-import FormsPage from '../pageobjects/forms.page.js';
+import FormsPage from '../pageobjects/formsPage';
 
 describe('Form tests', () => {
     beforeEach(async () => {

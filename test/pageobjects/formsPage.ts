@@ -1,4 +1,4 @@
-import { Page } from './page.js';
+import { Page } from './basePage';
 
 class FormsPage extends Page {
     get formsScreen() {

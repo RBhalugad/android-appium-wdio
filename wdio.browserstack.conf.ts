@@ -82,7 +82,7 @@ config.capabilities?.forEach((caps) => {
     for (const key in commonCapabilities) {
         cap[key] = {
             ...(commonCapabilities[key] || {}),
-            ...((cap[key] || {})),
+            ...(cap[key] || {}),
         };
     }
 });

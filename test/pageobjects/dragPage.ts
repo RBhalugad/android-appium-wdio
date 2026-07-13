@@ -1,4 +1,4 @@
-import { Page } from './page.js';
+import { Page } from './basePage';
 
 class DragPage extends Page {
     get dragScreen() {

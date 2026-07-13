@@ -1,4 +1,4 @@
-import DragPage from '../pageobjects/drag.page.js';
+import DragPage from '../pageobjects/dragPage';
 
 describe('Drag gestures tests', () => {
     beforeEach(async () => {

@@ -1,10 +1,10 @@
-import MenuPage from '../pageobjects/menu.page.js';
-import HomePage from '../pageobjects/home.page.js';
-import WebviewPage from '../pageobjects/webview.page.js';
-import LoginPage from '../pageobjects/login.page.js';
-import FormsPage from '../pageobjects/forms.page.js';
-import SwipePage from '../pageobjects/swipe.page.js';
-import DragPage from '../pageobjects/drag.page.js';
+import MenuPage from '../pageobjects/menuPage';
+import HomePage from '../pageobjects/homePage';
+import WebviewPage from '../pageobjects/webviewPage';
+import LoginPage from '../pageobjects/loginPage';
+import FormsPage from '../pageobjects/formsPage';
+import SwipePage from '../pageobjects/swipePage';
+import DragPage from '../pageobjects/dragPage';
 
 describe('Menu UI tests', () => {
     beforeEach(async () => {

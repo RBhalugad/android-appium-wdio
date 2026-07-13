@@ -1,4 +1,4 @@
-import SwipePage from '../pageobjects/swipe.page.js';
+import SwipePage from '../pageobjects/swipePage';
 
 describe('Swipe gestures tests', () => {
     beforeEach(async () => {

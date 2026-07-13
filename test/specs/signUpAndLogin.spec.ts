@@ -1,4 +1,4 @@
-import LoginPage from '../pageobjects/login.page.js';
+import LoginPage from '../pageobjects/loginPage';
 
 describe('User SignUp & Login', () => {
     const userName = 'testuser@gmail.com';

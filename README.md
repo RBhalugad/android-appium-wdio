@@ -42,7 +42,7 @@ Then:
 This framework uses the **Page Object Model** pattern for clean, maintainable automation code.
 
 - `test/pageobjects/` — Contains screen-specific page classes with all element locators and common actions (e.g., `login.page.ts`, `drag.page.ts`). They extend `base.page.ts`.
-- `test/specs/` — Contains all Mocha test files organized by feature (`app.spec.ts`, `drag.spec.ts`, `form.spec.ts`, `menu.spec.ts`, `signUp&Login.spec.ts`, `swipe.spec.ts`).
+- `test/specs/` — Contains all Mocha test files organized by feature (`app.spec.ts`, `drag.spec.ts`, `form.spec.ts`, `menu.spec.ts`, `signUpAndLogin.spec.ts`, `swipe.spec.ts`).
 
 ## Run the tests
 

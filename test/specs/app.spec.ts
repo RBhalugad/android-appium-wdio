@@ -1,5 +1,5 @@
-import HomePage from '../pageobjects/home.page.js';
-import LoginPage from '../pageobjects/login.page.js';
+import HomePage from '../pageobjects/homePage';
+import LoginPage from '../pageobjects/loginPage';
 
 describe('WebdriverIO + Appium smoke test', () => {
     beforeEach(async () => {
