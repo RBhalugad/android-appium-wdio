@@ -25,15 +25,21 @@ export const config: WebdriverIO.Config = {
 
     capabilities: [
         {
+            platformName: 'Android',
+            'appium:automationName': 'UiAutomator2',
             'bstack:options': {
-                deviceName: 'Samsung Galaxy S23',
-                osVersion: '13.0',
+                deviceName: 'Samsung Galaxy S24',
+                osVersion: '14.0',
+                realMobile: true,
             },
         },
         {
+            platformName: 'Android',
+            'appium:automationName': 'UiAutomator2',
             'bstack:options': {
-                deviceName: 'Google Pixel 8',
+                deviceName: 'Google Pixel 8 Pro',
                 osVersion: '14.0',
+                realMobile: true,
             },
         },
     ],
@@ -67,7 +73,9 @@ export const config: WebdriverIO.Config = {
 
 // Shared capabilities to merge into every device entry
 const commonCapabilities: Record<string, any> = {
-    'appium:orientation': 'PORTRAIT',
+    'appium:options': {
+        orientation: 'PORTRAIT',
+    },
     'bstack:options': {
         projectName: 'Android Appium WDIO',
         buildName: 'browserstack build',
@@ -79,10 +87,14 @@ const commonCapabilities: Record<string, any> = {
 
 config.capabilities?.forEach((caps) => {
     const cap = caps as Record<string, any>;
-    for (const key in commonCapabilities) {
-        cap[key] = {
-            ...(commonCapabilities[key] || {}),
-            ...(cap[key] || {}),
-        };
+    for (const [key, value] of Object.entries(commonCapabilities)) {
+        if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
+            cap[key] = {
+                ...(typeof cap[key] === 'object' && cap[key] !== null && !Array.isArray(cap[key]) ? cap[key] : {}),
+                ...value,
+            };
+        } else {
+            cap[key] = cap[key] ?? value;
+        }
     }
 });
