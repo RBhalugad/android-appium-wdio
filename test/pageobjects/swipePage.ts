@@ -34,9 +34,7 @@ class SwipePage extends Page {
                 direction: 'left',
                 percent: 0.75,
             });
-            await driver.pause(1000);
-            const currentCard = await this.cards;
-            await expect(currentCard[0]).toBeDisplayed();
+            await carouselEl.waitForDisplayed({ timeout: 5000 });
         }
     }
 

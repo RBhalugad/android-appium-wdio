@@ -1,6 +1,6 @@
-import { Page } from './basePage';
+import { BasePage } from './basePage';
 
-class FormsPage extends Page {
+class FormsPage extends BasePage {
     get formsScreen() {
         return $('~Forms-screen');
     }

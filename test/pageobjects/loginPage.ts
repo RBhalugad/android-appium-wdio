@@ -1,6 +1,6 @@
-import { Page } from './basePage';
+import { BasePage } from './basePage';
 
-class LoginPage extends Page {
+class LoginPage extends BasePage {
     get loginScreen() {
         return $('~Login-screen');
     }

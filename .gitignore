@@ -37,3 +37,6 @@ Desktop.ini
 .env
 .env.*
 !.env.example
+
+# Test Companion onboarding (local, per-machine)
+.test-companion/

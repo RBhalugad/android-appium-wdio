@@ -1,6 +1,6 @@
-import { Page } from './basePage';
+import { BasePage } from './basePage';
 
-class DragPage extends Page {
+class DragPage extends BasePage {
     get dragScreen() {
         return $('~Drag-drop-screen');
     }

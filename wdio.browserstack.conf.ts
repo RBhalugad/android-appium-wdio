@@ -90,7 +90,9 @@ config.capabilities?.forEach((caps) => {
     for (const [key, value] of Object.entries(commonCapabilities)) {
         if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
             cap[key] = {
-                ...(typeof cap[key] === 'object' && cap[key] !== null && !Array.isArray(cap[key]) ? cap[key] : {}),
+                ...(typeof cap[key] === 'object' && cap[key] !== null && !Array.isArray(cap[key])
+                    ? cap[key]
+                    : {}),
                 ...value,
             };
         } else {

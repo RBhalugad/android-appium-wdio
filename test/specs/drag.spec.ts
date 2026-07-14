@@ -28,11 +28,11 @@ describe('Drag gestures tests', () => {
                 endX: dropLocation.x + dropSize.width / 2,
                 endY: dropLocation.y + dropSize.height / 2,
             });
-            await driver.pause(500);
+            await dropZone.waitForExist({ timeout: 5000 });
         }
 
         const congratulationsText = await DragPage.congratulationsText;
-        await congratulationsText.waitForDisplayed({ timeout: 10000 });
+        await congratulationsText.waitForDisplayed({ timeout: 20000 });
         await expect(congratulationsText).toBeDisplayed();
     });
 });

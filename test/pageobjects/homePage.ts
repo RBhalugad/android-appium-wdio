@@ -1,6 +1,6 @@
-import { Page } from './basePage';
+import { BasePage } from './basePage';
 
-class HomePage extends Page {
+class HomePage extends BasePage {
     get homeScreen() {
         return $('~Home-screen');
     }

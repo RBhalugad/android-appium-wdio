@@ -1,6 +1,6 @@
-import { Page } from './basePage';
+import { BasePage } from './basePage';
 
-class WebviewPage extends Page {
+class WebviewPage extends BasePage {
     get webviewScreen() {
         return $('//android.webkit.WebView');
     }

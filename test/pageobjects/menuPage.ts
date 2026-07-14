@@ -1,6 +1,6 @@
-import { Page } from './basePage';
+import { BasePage } from './basePage';
 
-class MenuPage extends Page {
+class MenuPage extends BasePage {
     get sideMenuPanel() {
         return $('~tab-side-menu-panel');
     }

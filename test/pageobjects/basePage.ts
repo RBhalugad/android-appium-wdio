@@ -1,4 +1,4 @@
-export class Page {
+export class BasePage {
     get tabHome() {
         return $('~Home');
     }
