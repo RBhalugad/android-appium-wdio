@@ -1,14 +1,15 @@
-import HomePage from '../pageobjects/homePage';
+import SampleAppPage from '../pageobjects/sampleAppPage';
 
-describe('iOS – App launch smoke test', () => {
-    it('launches the app, verifies the Home tab, and closes', async () => {
-        // The app is auto-installed and launched by Appium via the .ipa capability.
-        // Verify the Home tab is visible after launch.
-        const homeTab = await HomePage.tabHome;
-        await homeTab.waitForDisplayed({ timeout: 20000 });
-        await expect(homeTab).toBeDisplayed();
+describe('iOS – BrowserStack Sample App', () => {
+    it('enters text and verifies the output', async () => {
+        const inputText = 'hello@browserstack.com';
 
-        // Close the app gracefully.
-        await HomePage.close();
+        await SampleAppPage.clickTextButton();
+        await SampleAppPage.enterText(inputText);
+
+        await driver.pause(5000);
+
+        const outputText = await SampleAppPage.getOutputText();
+        await expect(outputText).toBe(inputText);
     });
 });
