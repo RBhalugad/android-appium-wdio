@@ -1,6 +1,6 @@
-# Android + Appium + WebdriverIO (TypeScript) — Starter
+# Android & iOS + Appium + WebdriverIO (TypeScript) — Starter
 
-A complete working project for testing an Android app on a **real device** or **emulator** with [WebdriverIO](https://webdriver.io) v9, [Appium](https://appium.io) 3, and the **Page Object Model (POM)** pattern.
+A complete working project for testing Android and iOS apps on **real devices** or **emulators/simulators** with [WebdriverIO](https://webdriver.io) v9, [Appium](https://appium.io) 3, and the **Page Object Model (POM)** pattern.
 
 This test framework is currently built against the [WebdriverIO Native Demo App](https://github.com/webdriverio/native-demo-app) and covers various mobile automation scenarios including:
 
@@ -20,6 +20,7 @@ This test framework is currently built against the [WebdriverIO Native Demo App]
     ```bash
     npm install -g appium
     appium driver install uiautomator2
+    appium driver install xcuitest
     ```
 5. On your phone: enable **Developer options** → **USB debugging**, plug it in via USB, and confirm it shows up. For emulators, simply start a virtual device via Android Studio:
     ```bash
@@ -34,8 +35,10 @@ npm install
 
 Then:
 
-1. Download the demo app APK from https://github.com/webdriverio/native-demo-app/releases/latest and put it in `./apps`. (Named `android_native.apk`)
-2. Make sure your Android emulator is running or real device is plugged in.
+1. Download the demo app from https://github.com/webdriverio/native-demo-app/releases/latest.
+    - For Android, put the `.apk` in `./apps`.
+    - For iOS, unzip the simulator `.app.zip` and put the `.app` folder in `./apps`.
+2. Make sure your Android emulator / iOS simulator is running or real device is plugged in.
 
 ## Project Structure
 
@@ -46,13 +49,24 @@ This framework uses the **Page Object Model** pattern for clean, maintainable au
 
 ## Run the tests
 
-To execute the entire test suite:
+To execute the test suites locally:
 
 ```bash
-npm test
+# Run Android tests
+npm run test:android
+
+# Run iOS tests
+npm run test:ios
 ```
 
-This command automatically starts the Appium server, installs the APK, executes all test files under `test/specs/`, and shuts down Appium afterward.
+To execute tests against BrowserStack:
+
+```bash
+npm run test:android:browserstack
+npm run test:ios:browserstack
+```
+
+These commands will automatically start the Appium server, install the app, execute all test files under `test/specs/`, and shut down Appium afterward.
 
 ## Next steps
 
