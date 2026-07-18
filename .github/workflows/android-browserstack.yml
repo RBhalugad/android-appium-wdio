@@ -1,4 +1,4 @@
-name: BrowserStack Tests
+name: Android BrowserStack Tests
 
 on:
     pull_request:
@@ -6,8 +6,8 @@ on:
     workflow_dispatch: # Allow manual trigger
 
 jobs:
-    browserstack-test:
-        name: Run Appium Tests on BrowserStack
+    android-browserstack-test:
+        name: Run Android Appium Tests on BrowserStack
         runs-on: ubuntu-latest
         timeout-minutes: 30
 
@@ -24,7 +24,7 @@ jobs:
             - name: Install dependencies
               run: npm ci
 
-            - name: Run BrowserStack tests
+            - name: Run Android BrowserStack tests
               run: npm run test:android:browserstack
               env:
                   BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
@@ -39,16 +39,16 @@ jobs:
               if: always()
               uses: actions/upload-artifact@v4
               with:
-                  name: allure-report
+                  name: android-allure-report
                   path: allure-report/
-                  retention-days: 30
+                  retention-days: 1
 
             - name: Upload test logs
               if: failure()
               uses: actions/upload-artifact@v4
               with:
-                  name: test-logs
+                  name: android-test-logs
                   path: |
                       log/
                       logs/
-                  retention-days: 14
+                  retention-days: 1
