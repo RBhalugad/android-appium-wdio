@@ -25,6 +25,14 @@ class SampleAppPage extends BasePage {
         await this.textOutput.waitForDisplayed({ timeout: 30000 });
         return await this.textOutput.getText();
     }
+
+    async waitForOutputText(text: string): Promise<void> {
+        await this.textOutput.waitForDisplayed({ timeout: 30000 });
+        await driver.waitUntil(async () => (await this.textOutput.getText()) === text, {
+            timeout: 30000,
+            timeoutMsg: `Expected iOS output text to become "${text}".`,
+        });
+    }
 }
 
 export default new SampleAppPage();

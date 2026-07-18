@@ -1,6 +1,6 @@
-import { Page } from './basePage';
+import { BasePage } from './basePage';
 
-class SwipePage extends Page {
+class SwipePage extends BasePage {
     get swipeScreen() {
         return $('~Swipe-screen');
     }

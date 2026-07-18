@@ -2,7 +2,7 @@
     "name": "android-appium-wdio",
     "version": "1.0.0",
     "private": true,
-    "description": "WebdriverIO + Appium starter for testing an Android app on a real device (TypeScript)",
+    "description": "WebdriverIO + Appium starter for testing Android and iOS apps (TypeScript)",
     "type": "module",
     "engines": {
         "node": ">=20.19.0"
@@ -15,6 +15,7 @@
         "postinstall": "tsx scripts/patch-webdriver.ts",
         "format": "prettier --write .",
         "format:check": "prettier --check .",
+        "typecheck": "tsc --noEmit",
         "report": "allure generate allure-results --clean && allure open"
     },
     "devDependencies": {
@@ -33,6 +34,8 @@
         "typescript": "^7.0.2"
     },
     "overrides": {
-        "serialize-javascript": "^7.0.7"
+        "@grpc/grpc-js": "1.14.4",
+        "serialize-javascript": "^7.0.7",
+        "uuid": "11.1.1"
     }
 }

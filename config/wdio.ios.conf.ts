@@ -10,12 +10,15 @@ const appsDir = join(process.cwd(), 'apps');
 const ipaFile = existsSync(appsDir)
     ? readdirSync(appsDir).find((file) => file.endsWith('.ipa'))
     : undefined;
+const iosDeviceName = process.env.IOS_DEVICE_NAME ?? 'iPhone 16';
+const iosPlatformVersion = process.env.IOS_PLATFORM_VERSION ?? '18.0';
+const iosUdid = process.env.IOS_UDID;
+const noReset = process.env.APPIUM_NO_RESET === 'true';
 
 if (!ipaFile) {
     throw new Error(
-        'No .ipa found in ./apps. Download the WebdriverIO demo app (iOS build) from \n' +
-            'https://github.com/webdriverio/native-demo-app/releases/latest \n' +
-            'and place the .ipa in the ./apps folder.',
+        'No .ipa found in ./apps. Place the BrowserStack sample app, or your own iOS app, ' +
+            'in the ./apps folder.',
     );
 }
 
@@ -34,19 +37,19 @@ export const config: WebdriverIO.Config = {
             'wdio:maxInstances': 1,
             'appium:automationName': 'XCUITest',
 
-            // ── Update these to match your device / simulator ──
-            'appium:deviceName': 'iPhone 16',
-            'appium:platformVersion': '18.0',
+            // Override these with IOS_DEVICE_NAME / IOS_PLATFORM_VERSION when needed.
+            'appium:deviceName': iosDeviceName,
+            'appium:platformVersion': iosPlatformVersion,
 
-            // Set to true when targeting a real device, false for Simulator
-            'appium:udid': 'auto',
+            // Optional real-device UDID; omit for simulator selection by name/version.
+            ...(iosUdid ? { 'appium:udid': iosUdid } : {}),
 
             // Resolved automatically from ./apps above
             'appium:app': join(appsDir, ipaFile),
             'appium:orientation': 'PORTRAIT',
 
             'appium:autoAcceptAlerts': true,
-            'appium:noReset': true,
+            'appium:noReset': noReset,
             'appium:newCommandTimeout': 240,
         },
     ],

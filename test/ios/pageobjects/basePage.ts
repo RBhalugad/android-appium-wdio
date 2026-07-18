@@ -1,9 +1,9 @@
 export class BasePage {
     /**
-     * Bundle ID for the WebdriverIO Native Demo App (iOS).
+     * Bundle ID for the sample iOS app.
      * Update this if you are testing a different app.
      */
-    private readonly bundleId = 'com.wdiodemoapp';
+    private readonly bundleId = process.env.IOS_BUNDLE_ID ?? 'com.browserstack.Sample-iOS';
 
     get tabHome() {
         return $('~Home');
@@ -29,7 +29,10 @@ export class BasePage {
 
     async openApp() {
         await driver.activateApp(this.bundleId);
-        await driver.pause(2000);
+        await driver.waitUntil(async () => (await driver.getPageSource()).length > 0, {
+            timeout: 20000,
+            timeoutMsg: 'iOS app did not finish launching.',
+        });
     }
 
     async close() {

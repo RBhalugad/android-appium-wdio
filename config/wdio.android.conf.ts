@@ -10,13 +10,15 @@ const appsDir = join(process.cwd(), 'apps');
 const apkFile = existsSync(appsDir)
     ? readdirSync(appsDir).find((file) => file.endsWith('.apk'))
     : undefined;
+const androidUdid = process.env.ANDROID_UDID;
+const noReset = process.env.APPIUM_NO_RESET === 'true';
 
 if (!apkFile) {
     throw new Error(
         'No .apk found in ./apps. Download the WebdriverIO demo app (Android build) from \n' +
             'https://github.com/webdriverio/native-demo-app/releases/latest \n' +
             'and place the .apk in the ./apps folder. To test your own app instead, just drop\n' +
-            'your own .apk there — nothing else in this file needs to change.',
+            'your own .apk there - nothing else in this file needs to change.',
     );
 }
 
@@ -35,8 +37,8 @@ export const config: WebdriverIO.Config = {
             'wdio:maxInstances': 1,
             'appium:automationName': 'UiAutomator2',
 
-            // Device serial from `adb devices -l`
-            'appium:udid': 'RZCW82S2D9F',
+            // Optional device serial from `adb devices -l`; omit to let Appium choose.
+            ...(androidUdid ? { 'appium:udid': androidUdid } : {}),
 
             // Resolved automatically from ./apps above
             'appium:app': join(appsDir, apkFile),
@@ -44,7 +46,7 @@ export const config: WebdriverIO.Config = {
 
             'appium:autoGrantPermissions': true,
             'appium:ignoreHiddenApiPolicyError': true,
-            'appium:noReset': true,
+            'appium:noReset': noReset,
             'appium:newCommandTimeout': 240,
         },
     ],

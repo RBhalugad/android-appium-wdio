@@ -16,7 +16,7 @@ jobs:
             - name: Set up Node.js
               uses: actions/setup-node@v4
               with:
-                  node-version: 20
+                  node-version: 24
                   cache: npm
 
             - name: Install dependencies
@@ -24,6 +24,9 @@ jobs:
 
             - name: Check Formatting
               run: npm run format:check
+
+            - name: Type check
+              run: npm run typecheck
 
     test:
         name: Run iOS Appium Tests
@@ -37,7 +40,7 @@ jobs:
             - name: Set up Node.js
               uses: actions/setup-node@v4
               with:
-                  node-version: 20
+                  node-version: 24
                   cache: npm
 
             - name: Install dependencies
@@ -80,7 +83,7 @@ jobs:
             - name: Set up Node.js
               uses: actions/setup-node@v4
               with:
-                  node-version: 20
+                  node-version: 24
 
             - name: Install allure commandline
               run: npm install -g allure-commandline

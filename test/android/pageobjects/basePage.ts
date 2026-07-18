@@ -1,4 +1,6 @@
 export class BasePage {
+    private readonly appId = process.env.ANDROID_APP_ID ?? 'com.wdiodemoapp';
+
     get tabHome() {
         return $('~Home');
     }
@@ -22,12 +24,15 @@ export class BasePage {
     }
 
     async openApp() {
-        await driver.activateApp('com.wdiodemoapp');
-        await driver.pause(2000);
+        await driver.activateApp(this.appId);
+        await driver.waitUntil(async () => (await driver.getPageSource()).length > 0, {
+            timeout: 20000,
+            timeoutMsg: 'Android app did not finish launching.',
+        });
     }
 
     async close() {
-        await driver.terminateApp('com.wdiodemoapp');
+        await driver.terminateApp(this.appId);
     }
 
     async navigateTo(tab: string) {
