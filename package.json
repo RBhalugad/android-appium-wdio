@@ -8,8 +8,10 @@
         "node": ">=20.19.0"
     },
     "scripts": {
-        "test": "wdio run ./wdio.conf.ts",
-        "test:browserstack": "wdio run ./wdio.browserstack.conf.ts",
+        "test:android": "wdio run ./config/wdio.android.conf.ts",
+        "test:android:browserstack": "wdio run ./config/wdio.android.browserstack.conf.ts",
+        "test:ios": "wdio run ./config/wdio.ios.conf.ts",
+        "test:ios:browserstack": "wdio run ./config/wdio.ios.browserstack.conf.ts",
         "postinstall": "tsx scripts/patch-webdriver.ts",
         "format": "prettier --write .",
         "format:check": "prettier --check .",

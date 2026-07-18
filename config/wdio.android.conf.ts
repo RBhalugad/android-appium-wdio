@@ -1,5 +1,6 @@
 import { existsSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
+import { baseConfig } from './wdio.base.conf';
 
 // ---------------------------------------------------------------------------
 // Auto-detect the .apk inside ./apps so this file doesn't go stale every
@@ -20,6 +21,8 @@ if (!apkFile) {
 }
 
 export const config: WebdriverIO.Config = {
+    ...baseConfig,
+
     //
     // ============
     // Capabilities
@@ -46,22 +49,11 @@ export const config: WebdriverIO.Config = {
         },
     ],
 
-    //
-    // ==================
-    // Specify Test Files
-    // ==================
-    specs: ['./test/specs/**/*.spec.ts'],
+    specs: ['../test/android/specs/**/*.spec.ts'],
 
-    //
-    // ===================
-    // Test Configurations
-    // ===================
     runner: 'local',
-    logLevel: 'info',
     bail: 0,
-    waitforTimeout: 20000,
     connectionRetryTimeout: 120000,
-    connectionRetryCount: 3,
 
     // Starts and stops the Appium server for you around the test run.
     services: [
@@ -78,21 +70,4 @@ export const config: WebdriverIO.Config = {
             },
         ],
     ],
-
-    framework: 'mocha',
-    reporters: [
-        'spec',
-        [
-            'allure',
-            {
-                outputDir: 'allure-results',
-                disableWebdriverStepsReporting: true,
-                disableWebdriverScreenshotsReporting: false,
-            },
-        ],
-    ],
-    mochaOpts: {
-        ui: 'bdd',
-        timeout: 120000,
-    },
 };
