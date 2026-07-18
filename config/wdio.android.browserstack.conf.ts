@@ -12,7 +12,7 @@ export const config: WebdriverIO.Config = {
             'browserstack',
             {
                 buildIdentifier: '${BUILD_NUMBER}',
-                app: process.env.BROWSERSTACK_APP_URL,
+                app: process.env.BROWSERSTACK_ANDROID_APP_URL,
                 browserstackLocal: false,
             },
         ],
